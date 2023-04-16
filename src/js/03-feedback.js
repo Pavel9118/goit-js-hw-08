@@ -1,11 +1,12 @@
 import _throttle from 'lodash.throttle';
 const form = document.querySelector('.feedback-form');
-const getIputData = localStorage.getItem('feedback-form-state');
-const parceInputData = JSON.parse(getIputData);
+const LOCALSTORAGE_KEY = 'feedback-form-state';
 
 form.addEventListener('input', _throttle(onFormInput, 500));
 form.addEventListener('submit', onButtonClick);
 
+const getIputData = localStorage.getItem('LOCALSTORAGE_KEY');
+const parceInputData = JSON.parse(getIputData);
 
 
 form.email.value = parceInputData.email;
@@ -15,11 +16,12 @@ form.message.value = parceInputData.message;
 
 
 function onFormInput(event) {
-  const inputData = {
+    const inputData = {
     email: form.email.value,
-    message: form.message.value,
-  };
- localStorage.setItem('feedback-form-state', JSON.stringify(inputData));
+    message: form.message.value, 
+  }
+  
+ localStorage.setItem('LOCALSTORAGE_KEY', JSON.stringify(inputData));
   
   
 };
@@ -27,11 +29,12 @@ function onFormInput(event) {
 
 function onButtonClick(event) {
   event.preventDefault();
-  console.log(`email: ${parceInputData.email}`);
-  console.log(`message: ${parceInputData.message}`);
-  localStorage.clear;
+  console.log(parceInputData); 
   form.email.value = "";
   form.message.value = "";
+  localStorage.removeItem('LOCALSTORAGE_KEY');
+
 
  
 };
+

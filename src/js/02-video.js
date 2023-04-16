@@ -10,8 +10,14 @@ function onRunPlayer(event) {
     console.log(event.seconds);
     localStorage.setItem('videoplayer-current-time', event.seconds);
 };
-function setCurrentTime() {
-    player.setCurrentTime(localStorage.getItem('videoplayer-current-time'));
-};
 setCurrentTime();
+function setCurrentTime() {
+    const getTime = localStorage.getItem('videoplayer-current-time');
+    if (!getTime) {
+        return;
+    }
+    startTime = Number(getTime);
+    player.setCurrentTime(startTime);
+    
+};
 
