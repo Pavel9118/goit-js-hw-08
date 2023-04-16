@@ -16,7 +16,7 @@ function setCurrentTime() {
     if (!getTime) {
         return;
     }
-    startTime = Number(getTime);
+    const startTime = Number(getTime);
     player.setCurrentTime(startTime);
     
 };
