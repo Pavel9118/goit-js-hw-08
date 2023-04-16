@@ -8,9 +8,11 @@ form.addEventListener('submit', onButtonClick);
 const getIputData = localStorage.getItem('LOCALSTORAGE_KEY');
 const parceInputData = JSON.parse(getIputData);
 
-
-form.email.value = parceInputData.email;
+if (parceInputData) {
+  form.email.value = parceInputData.email;
 form.message.value = parceInputData.message;
+};
+
 
 
 
